@@ -1,0 +1,117 @@
+/* Custom styling for navbar */
+.navbar {
+    background-color: #343a40; /* Dark background color */
+    padding: 1rem;
+}
+
+.navbar-brand {
+    font-family: 'Brush Script MT', cursive;
+    color: yellow; /* Yellow text color */
+    font-size: 28px;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.navbar-nav .nav-link:hover {
+    color: yellow; /* Yellow hover color */
+}
+
+/* Header styling */
+.masthead {
+    background-color: #6c757d; /* Darker background for contrast */
+    background-image: url("https://cdn.shopify.com/oxygen-v2/24098/8185/16590/835429/build/_assets/botc-hero-banner-26I3AP6K.webp");
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.masthead-heading {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.masthead-subheading {
+    font-size: 5rem;
+    font-weight: 500;
+}
+
+/* Section styling */
+.page-section {
+    background-color: #6c757d; /* Darker background for contrast */
+    padding: 3rem 0;
+}
+
+.divider {
+    border-top: 1px solid #f8f9fa;
+    width: 60px;
+    margin: 1rem auto;
+}
+
+.text-muted {
+    color: #f8f9fa !important;
+}
+
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 50px 0;
+    position: relative;
+    width: 100%;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+    align-items: center;
+    will-change: transform;
+}
+
+.carousel img {
+    width: 300px; /* Fixed width */
+    height: 300px; /* Fixed height */
+    object-fit: cover;
+    margin: 0 10px;
+    transition: transform 0.5s ease;
+}
+
+.carousel img.active {
+    transform: scale(1.2); /* Enlarges the active image */
+    z-index: 2; /* Brings the active image to the front */
+}
+
+.carousel img:not(.active) {
+    opacity: 0.7; /* Fades out the non-active images */
+}
+
+.carousel img:hover {
+    transform: scale(1.3);
+}
+
+.carousel-arrow {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    border: none;
+    color: white;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 3; /* Ensure arrows are above images */
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
+
+.carousel-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Darken on hover */
+}
