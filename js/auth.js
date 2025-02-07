@@ -1,5 +1,5 @@
 // Initialize Back4App
-Parse.initialize("YOUR_APP_ID", "YOUR_JAVASCRIPT_KEY"); 
+Parse.initialize("s7C0Xt339QlyFlfufornKYww6AvgNPSjHgJ7rb5C", "WUHOoRAw4QUUwae5PVvDRE9MMAfPYyDUe1DRcJvY"); 
 Parse.serverURL = "https://parseapi.back4app.com/";
 
 document.getElementById("login-form").addEventListener("submit", async function(e) {
