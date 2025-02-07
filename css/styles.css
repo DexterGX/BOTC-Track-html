@@ -1,23 +1,33 @@
-/* Custom styling for navbar */
+/* Change the background color of the entire navbar */
 .navbar {
-    background-color: #343a40; /* Dark background color */
-    padding: 1rem;
+    background-color: #343a40; /* Dark gray */
+    color: white; /* Text color */
 }
 
-.navbar-brand {
-    font-family: 'Brush Script MT', cursive;
-    color: yellow; /* Yellow text color */
-    font-size: 28px;
-}
-
-.navbar-nav .nav-link {
+/* Ensure links inherit the correct text color */
+.navbar a.nav-link {
     color: white;
     font-weight: bold;
-    margin-right: 1rem;
 }
 
-.navbar-nav .nav-link:hover {
-    color: yellow; /* Yellow hover color */
+/* Change link color on hover */
+.navbar a.nav-link:hover {
+    color: #ffc107; /* Yellow hover effect */
+}
+
+/* Hamburger menu button (matches navbar background) */
+.navbar-toggler {
+    background-color: white;
+    border-color: white;
+}
+
+/* Color for the hamburger menu icon */
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.bg-light {
+    background-color: #cfd1d3 !important;
 }
 
 /* Header styling */

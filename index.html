@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOTC Tracker</title>
+    <title>BOTC Track</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -11,15 +11,18 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="index.html">BOTC Tracker</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="index.html">BOTC Track</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="pages/botc.html">BOTC?</a></li>
-            <li class="nav-item"><a class="nav-link" href="pages/leaderboard.html">Leaderboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="pages/storytellers.html">Storytellers</a></li>
-            <li class="nav-item"><a class="nav-link" href="pages/feedback.html">Feedback</a></li>
-            <li class="nav-item"><a class="nav-link" href="pages/login.html">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="pages/botc.html" aria-label="About BOTC">BOTC?</a></li>
+            <li class="nav-item"><a class="nav-link" href="pages/leaderboard.html" aria-label="Leaderboard">Leaderboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="pages/storytellers.html" aria-label="Storytellers">Storytellers</a></li>
+            <li class="nav-item"><a class="nav-link" href="pages/feedback.html" aria-label="Feedback">Feedback</a></li>
+            <li class="nav-item"><a class="nav-link" href="pages/login.html" aria-label="Login">Login</a></li>
         </ul>
     </div>
 </nav>
@@ -27,34 +30,34 @@
 <header class="masthead text-center text-white">
     <div class="masthead-content">
         <div class="container">
-            <h1 class="masthead-heading mb-0">Welcome To...</h1>
-            <h2 class="masthead-subheading mb-0">Blood on The Clocktower Tracker!</h2>
-            <a href="pages/botc.html" class="btn btn-primary btn-xl rounded-pill mt-5">Get Started</a>
+            <h1 class="masthead-heading mb-3 display-4">Welcome To...</h1>
+            <h2 class="masthead-subheading mb-4 display-2 font-weight-bold">Blood on The Clocktower Tracker!</h2>
+            <a href="pages/botc.html" class="btn btn-primary btn-xl rounded-pill mt-4">Get Started</a>
         </div>
     </div>
 </header>
 
 <section class="page-section" id="services">
     <div class="container">
-        <h2 class="text-center mt-0">SERVICES</h2>
+        <h2 class="text-center mt-0">Our Services</h2>
         <hr class="divider my-4">
         <div class="row">
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="mt-5">
                     <h3 class="h4 mb-2">Track Winnings</h3>
-                    <p class="text-muted mb-0">Get insight on your wins and losses in Blood on the Clocktower!</p>
+                    <p class="text-muted mb-0">Gain insight into your wins and losses while playing Blood on the Clocktower!</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="mt-5">
                     <h3 class="h4 mb-2">Rank to the Top</h3>
-                    <p class="text-muted mb-0">Compete with friends and see who's the best!</p>
+                    <p class="text-muted mb-0">Compete with friends and prove you're the best!</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="mt-5">
-                    <h3 class="h4 mb-2">Feedbacks</h3>
-                    <p class="text-muted mb-0">Improve your gameplay with constructive feedback.</p>
+                    <h3 class="h4 mb-2">Get Feedback</h3>
+                    <p class="text-muted mb-0">Improve your gameplay with constructive feedback and insights.</p>
                 </div>
             </div>
         </div>
@@ -63,16 +66,16 @@
 
 <section class="page-section" id="gallery">
     <div class="container">
-        <h2 class="text-center mt-0">GALLERY</h2>
+        <h2 class="text-center mt-0">Gallery</h2>
         <div class="carousel-container">
-            <button class="carousel-arrow left-arrow">&#10094;</button>
+            <button class="carousel-arrow left-arrow" aria-label="Previous Image">&#10094;</button>
             <div class="carousel">
-                <img src="assets/img/gallery/img1.jpg" alt="Image 1">
-                <img src="assets/img/gallery/img2.jpg" alt="Image 2">
-                <img src="assets/img/gallery/img3.jpg" alt="Image 3">
-                <img src="assets/img/gallery/img4.jpg" alt="Image 4">
+                <img src="assets/img/gallery/img1.jpg" alt="Gameplay Screenshot 1">
+                <img src="assets/img/gallery/img2.jpg" alt="Gameplay Screenshot 2">
+                <img src="assets/img/gallery/img3.jpg" alt="Gameplay Screenshot 3">
+                <img src="assets/img/gallery/img4.jpg" alt="Gameplay Screenshot 4">
             </div>
-            <button class="carousel-arrow right-arrow">&#10095;</button>
+            <button class="carousel-arrow right-arrow" aria-label="Next Image">&#10095;</button>
         </div>
     </div>
 </section>
