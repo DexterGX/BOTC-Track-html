@@ -1,0 +1,14 @@
+{
+    "matches": [
+      {
+        "id": 1,
+        "date": "2025-02-07",
+        "storyteller": "Alice",
+        "players": [
+          { "name": "Bob", "role": "Washerwoman", "won": true },
+          { "name": "Eve", "role": "Imp", "won": false }
+        ]
+      }
+    ]
+  }
+  
