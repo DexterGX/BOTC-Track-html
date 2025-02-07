@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOTC Match Tracker</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+    <script src="js/auth.js" defer></script>
+    <script src="js/match.js" defer></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">BOTC Tracker</a>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>User Authentication</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login / Sign Up</button>
+        </form>
+        <button id="logout" class="btn btn-danger mt-3">Logout</button>
+    </div>
+
+    <div class="container mt-4" id="match-section" style="display:none;">
+        <h2>Record a New Match</h2>
+        <form id="match-form">
+            <div class="form-group">
+                <label for="storyteller">Storyteller Name:</label>
+                <input type="text" class="form-control" id="storyteller" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" class="form-control" id="date" required>
+            </div>
+            <div class="form-group">
+                <label for="players">Players (comma separated):</label>
+                <input type="text" class="form-control" id="players" required>
+            </div>
+            <div class="form-group">
+                <label for="winner">Winning Team:</label>
+                <select class="form-control" id="winner">
+                    <option value="Good">Good</option>
+                    <option value="Evil">Evil</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Match</button>
+        </form>
+
+        <h3 class="mt-5">Match History</h3>
+        <table class="table table-bordered" id="match-history">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Storyteller</th>
+                    <th>Players</th>
+                    <th>Winner</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</body>
+</html>
