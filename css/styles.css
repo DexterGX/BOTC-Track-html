@@ -60,6 +60,14 @@
     color: #f8f9fa !important;
 }
 
+.footer {
+    background-image: url("https://as1.ftcdn.net/jpg/04/92/50/50/1000_F_492505079_bwFRH5gNugrx1tKXEcWYiPK2zyRZ6Rnu.jpg");
+    background-color: #777;
+    padding: 10px;
+    text-align: center;
+    color: white;
+  }
+
 .carousel-container {
     position: relative;
     overflow: hidden; /* Prevents overflow issues */
