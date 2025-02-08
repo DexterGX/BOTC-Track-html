@@ -1,39 +1,35 @@
-/* Change the background color of the entire navbar */
-.navbar {
-    background-color: #343a40; /* Dark gray */
-    color: white; /* Text color */
+/* Override Bootstrap's .bg-light class */
+.bg-light {
+    background-color: #cfd1d3 !important;
 }
 
-/* Ensure links inherit the correct text color */
+/* Navbar link styles */
 .navbar a.nav-link {
     color: white;
     font-weight: bold;
 }
 
-/* Change link color on hover */
 .navbar a.nav-link:hover {
     color: #ffc107; /* Yellow hover effect */
 }
 
-/* Hamburger menu button (matches navbar background) */
+/* Hamburger menu button */
 .navbar-toggler {
     background-color: white;
     border-color: white;
 }
 
-/* Color for the hamburger menu icon */
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
-
-.bg-light {
-    background-color: #cfd1d3 !important;
 }
 
 /* Header styling */
 .masthead {
     background-color: #6c757d; /* Darker background for contrast */
     background-image: url("https://cdn.shopify.com/oxygen-v2/24098/8185/16590/835429/build/_assets/botc-hero-banner-26I3AP6K.webp");
+    background-position: center; /* Centers the image */
+    background-size: cover; /* Ensures the image covers the section */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
     padding-top: 3rem;
     padding-bottom: 3rem;
 }
@@ -65,29 +61,28 @@
 }
 
 .carousel-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    padding: 50px 0;
     position: relative;
+    overflow: hidden; /* Prevents overflow issues */
     width: 100%;
+    max-width: 800px; /* Adjust as needed */
+    margin: auto;
 }
 
 .carousel {
     display: flex;
-    transition: transform 0.5s ease;
-    align-items: center;
-    will-change: transform;
+    transition: transform 0.5s ease; /* Smooth transition */
 }
 
 .carousel img {
-    width: 300px; /* Fixed width */
-    height: 300px; /* Fixed height */
-    object-fit: cover;
-    margin: 0 10px;
-    transition: transform 0.5s ease;
+    width: 500px; /* Set a fixed width */
+    height: 450px; /* Set a fixed height */
+    object-fit: cover; /* Ensures images maintain aspect ratio */
+    flex-shrink: 0; /* Prevents shrinking */
+    margin: 5px; /* Adds spacing between images */
+    border-radius: 10px; /* Optional: Makes images rounded */
 }
+
+
 
 .carousel img.active {
     transform: scale(1.2); /* Enlarges the active image */
