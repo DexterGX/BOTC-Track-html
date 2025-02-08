@@ -45,6 +45,7 @@ async function loadUserMatches() {
                 <td>${match.get("date") ? match.get("date").toISOString().split("T")[0] : "N/A"}</td>
                 <td>${match.get("league_code") || "N/A"}</td>
                 <td>${match.get("storyteller") || "N/A"}</td>
+                <td>${match.get("script_played") || "N/A"}</td>
                 <td>${match.get("players") ? match.get("players").join(", ") : "N/A"}</td>
                 <td>${match.get("team") || "N/A"}</td>
                 <td>${match.get("role") || "N/A"}</td>
