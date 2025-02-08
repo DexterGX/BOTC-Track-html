@@ -82,8 +82,6 @@
     border-radius: 10px; /* Optional: Makes images rounded */
 }
 
-
-
 .carousel img.active {
     transform: scale(1.2); /* Enlarges the active image */
     z-index: 2; /* Brings the active image to the front */
@@ -119,4 +117,69 @@
 
 .carousel-arrow:hover {
     background-color: rgba(0, 0, 0, 0.8); /* Darken on hover */
+}
+
+/*
+CSS for Leaderboard page
+*/
+.leaderboard-container {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.leaderboard-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+.leaderboard-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.leaderboard-table tr:hover {
+    background-color: #ddd;
+}
+
+.leaderboard-table td {
+    text-align: center;
+}
+
+.league-input {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.league-input input {
+    padding: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+    width: 200px;
+}
+
+.league-input button {
+    padding: 6px 12px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.league-input button:hover {
+    background-color: #45a049;
 }
