@@ -1,14 +1,12 @@
-{
-    "matches": [
-      {
-        "id": 1,
-        "date": "2025-02-07",
-        "storyteller": "Alice",
-        "players": [
-          { "name": "Bob", "role": "Washerwoman", "won": true },
-          { "name": "Eve", "role": "Imp", "won": false }
-        ]
-      }
-    ]
+[
+  {
+      "date": { "__type": "Date", "iso": "2025-02-07T00:00:00.000Z" },
+      "league_code": "BOTC-123",
+      "storyteller": "Alice",
+      "players": ["Bob", "Eve", "Charlie"],
+      "team": "Good",
+      "role": "Washerwoman",
+      "game_outcome": "Good Wins",
+      "st_mistake": "No"
   }
-  
+]
