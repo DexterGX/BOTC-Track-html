@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Match - BOTC Match Tracker</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+    <script src="../js/auth.js" defer></script>
+    <script src="../js/match.js" defer></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="../index.html">BOTC Track</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="http://bloodontheclocktower.com/" aria-label="About BOTC">BOTC?</a></li>
+                <li class="nav-item"><a class="nav-link" href="../pages/leaderboard.html" aria-label="Leaderboard">Leaderboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="../pages/storytellers.html" aria-label="Storytellers">Storytellers</a></li>
+                <li class="nav-item"><a class="nav-link" href="../pages/feedback.html" aria-label="Feedback">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link" href="../pages/login.html" aria-label="Login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>Submit a Match</h2>
+        <form id="match-form">
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" class="form-control" id="date" required>
+            </div>
+            <div class="form-group">
+                <label for="league-code">League Code:</label>
+                <input type="text" class="form-control" id="league-code" required>
+            </div>
+            <div class="form-group">
+                <label for="storyteller">Storyteller:</label>
+                <input type="text" class="form-control" id="storyteller" required>
+            </div>
+            <div class="form-group">
+                <label for="script-played">Script Played:</label>
+                <select class="form-control" id="script-played" onchange="toggleCustomScript()">
+                    <option value="Trouble Brewing">Trouble Brewing</option>
+                    <option value="Bad Moon Rising">Bad Moon Rising</option>
+                    <option value="Sects & Violets">Sects & Violets</option>
+                    <option value="Custom Script">Custom Script</option>
+                </select>
+            </div>
+            <div class="form-group" id="custom-script-group" style="display: none;">
+                <label for="custom-script">Custom Script Name:</label>
+                <input type="text" class="form-control" id="custom-script">
+            </div>
+            <div class="form-group">
+                <label for="players">Players (comma separated):</label>
+                <input type="text" class="form-control" id="players" required>
+            </div>
+            <div class="form-group">
+                <label for="team">Your Team:</label>
+                <select class="form-control" id="team">
+                    <option value="Good">Good</option>
+                    <option value="Evil">Evil</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="role">Your Role:</label>
+                <input type="text" class="form-control" id="role" required>
+            </div>
+            <div class="form-group">
+                <label for="game-outcome">Game Outcome:</label>
+                <select class="form-control" id="game-outcome">
+                    <option value="Good Wins">Good Wins</option>
+                    <option value="Evil Wins">Evil Wins</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="st-mistake">Storyteller Mistake?</label>
+                <select class="form-control" id="st-mistake">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Match</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleCustomScript() {
+            var scriptSelect = document.getElementById("script-played");
+            var customScriptGroup = document.getElementById("custom-script-group");
+            if (scriptSelect.value === "Custom Script") {
+                customScriptGroup.style.display = "block";
+            } else {
+                customScriptGroup.style.display = "none";
+            }
+        }
+    </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

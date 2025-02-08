@@ -1,6 +1,14 @@
 async function submitMatch() {
     const Match = Parse.Object.extend("Matches");
     const match = new Match();
+    
+    const currentUser = Parse.User.current();
+    if (!currentUser) {
+        alert("You must be logged in to submit a match.");
+        return;
+    }
+
+    const userId = currentUser.id; // Get user ID from Back4App
 
     const date = document.getElementById("date").value;
     const leagueCode = document.getElementById("league-code").value;
@@ -28,19 +36,19 @@ async function submitMatch() {
     match.set("role", role);
     match.set("game_outcome", gameOutcome);
     match.set("st_mistake", stMistake);
+    match.set("submitted_by", userId); // Save User ID
 
     try {
         await match.save();
         alert("Match submitted successfully!");
         document.getElementById("match-form").reset();
-        toggleCustomScript(); // Hide custom script field after reset
+        toggleCustomScript();
     } catch (error) {
         console.error("Error submitting match:", error);
-        alert("Failed to submit match. " + error.message);
+        alert("Failed to submit match.");
     }
 }
 
-// ✅ Ensure form actually calls `submitMatch()` on submit
 document.getElementById("match-form").addEventListener("submit", function(event) {
     event.preventDefault();
     submitMatch();
