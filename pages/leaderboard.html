@@ -18,7 +18,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="../pages/botc.html" aria-label="About BOTC">BOTC?</a></li>
+            <li class="nav-item"><a class="nav-link" href="http://bloodontheclocktower.com/" aria-label="About BOTC">BOTC?</a></li>
             <li class="nav-item"><a class="nav-link" href="../pages/leaderboard.html" aria-label="Leaderboard">Leaderboard</a></li>
             <li class="nav-item"><a class="nav-link" href="../pages/storytellers.html" aria-label="Storytellers">Storytellers</a></li>
             <li class="nav-item"><a class="nav-link" href="../pages/feedback.html" aria-label="Feedback">Feedback</a></li>
@@ -27,12 +27,42 @@
     </div>
 </nav>
 
+<div class="leaderboard-container">
+    <br><br><br>
+    <h2>Leaderboard</h2>
+
+    <!-- League Input Section -->
+    <div class="league-input">
+        <label for="leagueCode">Enter League Code:</label>
+        <input type="text" id="leagueCode" placeholder="League Code">
+        <button id="fetchLeaderboard">View Leaderboard</button>
+    </div>
+
+    <!-- Leaderboard Table -->
+    <table class="leaderboard-table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player Name</th>
+                <th>Games Played</th>
+                <th>Wins</th>
+                <th>Win Rate (%)</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be dynamically populated here -->
+        </tbody>
+    </table>
+</div>
+
+
 <!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- Custom JS -->
-<script src="js/scripts.js"></script>
+<script src="../js/table_feed.js"></script>
 
 </body>
 </html>

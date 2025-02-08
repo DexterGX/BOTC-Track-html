@@ -1,0 +1,3 @@
+/*
+JS for Leaderboard page
+*/

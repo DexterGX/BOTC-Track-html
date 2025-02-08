@@ -1,3 +1,6 @@
+/*
+JS for carousel in landing page
+*/
 document.addEventListener('DOMContentLoaded', function() {
     const carousel = document.querySelector('.carousel');
     const images = Array.from(carousel.querySelectorAll('img'));

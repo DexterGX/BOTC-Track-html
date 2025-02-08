@@ -1,0 +1,74 @@
+[
+    {
+        "leagueCode": "league1",
+        "rank": 1,
+        "playerName": "Melissa",
+        "gamesPlayed": 120,
+        "wins": 95,
+        "winRate": 79.17,
+        "points": 190
+    },
+    {
+        "leagueCode": "league1",
+        "rank": 2,
+        "playerName": "Seth Waterfall",
+        "gamesPlayed": 110,
+        "wins": 82,
+        "winRate": 74.55,
+        "points": 165
+    },
+    {
+        "leagueCode": "league2",
+        "rank": 3,
+        "playerName": "Alexandra Landeta",
+        "gamesPlayed": 100,
+        "wins": 70,
+        "winRate": 70.0,
+        "points": 150
+    },
+    {
+        "leagueCode": "league2",
+        "rank": 4,
+        "playerName": "Ed Viesturs",
+        "gamesPlayed": 90,
+        "wins": 62,
+        "winRate": 68.89,
+        "points": 130
+    },
+    {
+        "leagueCode": "league3",
+        "rank": 5,
+        "playerName": "Lenard Johnson",
+        "gamesPlayed": 85,
+        "wins": 50,
+        "winRate": 58.82,
+        "points": 100
+    },
+    {
+        "leagueCode": "league3",
+        "rank": 6,
+        "playerName": "Pengcheng",
+        "gamesPlayed": 75,
+        "wins": 40,
+        "winRate": 53.33,
+        "points": 80
+    },
+    {
+        "leagueCode": "league1",
+        "rank": 7,
+        "playerName": "Barbara",
+        "gamesPlayed": 60,
+        "wins": 35,
+        "winRate": 58.33,
+        "points": 70
+    },
+    {
+        "leagueCode": "league2",
+        "rank": 8,
+        "playerName": "Zoe",
+        "gamesPlayed": 50,
+        "wins": 25,
+        "winRate": 50.0,
+        "points": 50
+    }
+]
