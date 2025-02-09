@@ -9,6 +9,7 @@
     <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
     <script src="../js/auth.js" defer></script>
     <script src="../js/match.js" defer></script>
+    <script src="../js/form-handlers.js" defer></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -90,30 +91,9 @@
         </form>
     </div>
 
-    <script>
-        function toggleCustomScript() {
-            var scriptSelect = document.getElementById("script-played");
-            var customScriptGroup = document.getElementById("custom-script-group");
-            if (scriptSelect.value === "Custom Script") {
-                customScriptGroup.style.display = "block";
-            } else {
-                customScriptGroup.style.display = "none";
-            }
-        }
-
-        function toggleRoleField() {
-            var teamSelect = document.getElementById("team");
-            var roleGroup = document.getElementById("role-group");
-            var roleInput = document.getElementById("role");
-            
-            if (teamSelect.value === "Storyteller") {
-                roleGroup.style.display = "none";
-                roleInput.value = ""; // Clear role field
-            } else {
-                roleGroup.style.display = "block";
-            }
-        }
-    </script>
+    <footer class="footer mt-5">
+        <p>© 2025 BOTC Track. All rights reserved.</p>
+    </footer>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

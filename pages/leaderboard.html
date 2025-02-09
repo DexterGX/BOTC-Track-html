@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOTC Track</title>
-    <!-- Bootstrap CSS -->
+    <title>Leaderboard - BOTC Track</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
@@ -26,43 +24,43 @@
         </ul>
     </div>
 </nav>
+
 <div class="leaderboard-background">
-<div class="leaderboard-container">
-    <h2>Leaderboard</h2>
-
-    <!-- League Input Section -->
-    <div class="league-input">
-        <label for="leagueCode">Enter League Code:</label>
-        <input type="text" id="leagueCode" placeholder="League Code">
-        <br><br>
-        <button id="fetchLeaderboard">View Leaderboard</button>
+    <div class="leaderboard-container">
+        <h2>Leaderboard</h2>
+        <div class="league-input">
+            <label for="leagueCode">Enter League Code:</label>
+            <input type="text" id="leagueCode" placeholder="League Code">
+            <br><br>
+            <button id="fetchLeaderboard">View Leaderboard</button>
+        </div>
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player Name</th>
+                    <th>Games Played</th>
+                    <th>Wins</th>
+                    <th>Win Rate (%)</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be dynamically populated here -->
+            </tbody>
+        </table>
     </div>
+</div>
 
-    <!-- Leaderboard Table -->
-    <table class="leaderboard-table">
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Player Name</th>
-                <th>Games Played</th>
-                <th>Wins</th>
-                <th>Win Rate (%)</th>
-                <th>Points</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Rows will be dynamically populated here -->
-        </tbody>
-    </table>
-</div>
-</div>
+<footer class="footer mt-5">
+    <p>© 2025 BOTC Track. All rights reserved.</p>
+</footer>
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!-- Custom JS -->
-<script src="../js/table_feed.js"></script>
+<script src="../js/table_feed.js" defer></script>
 
 </body>
 </html>

@@ -3,38 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOTC Track</title>
-    <!-- Bootstrap CSS -->
+    <title>Feedback - BOTC Track</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/feedback.js" defer></script>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="../index.html">BOTC Track</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="http://bloodontheclocktower.com/" aria-label="About BOTC">BOTC?</a></li>
-            <li class="nav-item"><a class="nav-link" href="../pages/leaderboard.html" aria-label="Leaderboard">Leaderboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="../pages/storytellers.html" aria-label="Storytellers">Storytellers</a></li>
-            <li class="nav-item"><a class="nav-link" href="../pages/feedback.html" aria-label="Feedback">Feedback</a></li>
-            <li class="nav-item"><a class="nav-link" href="../pages/login.html" aria-label="Login">Login</a></li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="../index.html">BOTC Track</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="http://bloodontheclocktower.com/" aria-label="About BOTC">BOTC?</a></li>
+                <li class="nav-item"><a class="nav-link" href="../pages/leaderboard.html" aria-label="Leaderboard">Leaderboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="../pages/storytellers.html" aria-label="Storytellers">Storytellers</a></li>
+                <li class="nav-item"><a class="nav-link" href="../pages/feedback.html" aria-label="Feedback">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link" href="../pages/login.html" aria-label="Login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>Feedback</h2>
+        <form id="feedback-form">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea class="form-control" id="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Feedback</button>
+        </form>
     </div>
-</nav>
 
-<h1>Working on it!!</h1>
+        <footer class="footer mt-5">
+            <p>© 2025 BOTC Track. All rights reserved.</p>
+        </footer>
 
-<!-- Bootstrap JS and dependencies -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!-- Custom JS -->
-<script src="../js/scripts.js"></script>
-
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
