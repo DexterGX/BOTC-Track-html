@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOTC Track</title>
+    <title>Dashboard - BOTC Track</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
@@ -46,24 +46,30 @@
     <div class="container mt-4">
         <h2>Match History</h2>
         <button class="btn btn-primary mb-3" onclick="window.location.href='submit-match.html'">Add New Match</button>
-        <table class="table table-bordered" id="match-history">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>League Code</th>
-                    <th>Storyteller</th>
-                    <th>Script Played</th>
-                    <th>Players</th>
-                    <th>Team</th>
-                    <th>Role</th>
-                    <th>Game Outcome</th>
-                    <th>ST Mistake</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="match-history">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>League Code</th>
+                        <th>Storyteller</th>
+                        <th>Script Played</th>
+                        <th>Players</th>
+                        <th>Team</th>
+                        <th>Role</th>
+                        <th>Game Outcome</th>
+                        <th>ST Mistake</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
     
+    <footer class="footer mt-5">
+        <p>© 2025 BOTC Track. All rights reserved.</p>
+    </footer>
+
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>

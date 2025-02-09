@@ -1,19 +1,26 @@
+/* Global Styles */
+body {
+    background-image: url('../assets/body_background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 /* Override Bootstrap's .bg-light class */
 .bg-light {
     background-color: #cfd1d3 !important;
 }
 
-/* Navbar link styles */
+/* Navbar Styles */
 .navbar a.nav-link {
     color: white;
     font-weight: bold;
 }
 
 .navbar a.nav-link:hover {
-    color: #ffc107; /* Yellow hover effect */
+    color: #ffc107;
 }
 
-/* Hamburger menu button */
 .navbar-toggler {
     background-color: white;
     border-color: white;
@@ -23,13 +30,13 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-/* Header styling */
+/* Header Styling */
 .masthead {
-    background-color: #6c757d; /* Darker background for contrast */
+    background-color: #6c757d;
     background-image: url("https://cdn.shopify.com/oxygen-v2/24098/8185/16590/835429/build/_assets/botc-hero-banner-26I3AP6K.webp");
-    background-position: center; /* Centers the image */
-    background-size: cover; /* Ensures the image covers the section */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     padding-top: 3rem;
     padding-bottom: 3rem;
 }
@@ -44,9 +51,9 @@
     font-weight: 500;
 }
 
-/* Section styling */
+/* Section Styling */
 .page-section {
-    background-color: #6c757d; /* Darker background for contrast */
+    background-color: #6c757d;
     padding: 3rem 0;
 }
 
@@ -60,43 +67,47 @@
     color: #f8f9fa !important;
 }
 
+/* Footer */
 .footer {
     background-image: url("https://as1.ftcdn.net/jpg/04/92/50/50/1000_F_492505079_bwFRH5gNugrx1tKXEcWYiPK2zyRZ6Rnu.jpg");
     background-color: #777;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 10px;
     text-align: center;
     color: white;
-  }
+}
 
+/* Carousel */
 .carousel-container {
     position: relative;
-    overflow: hidden; /* Prevents overflow issues */
+    overflow: hidden;
     width: 100%;
-    max-width: 800px; /* Adjust as needed */
+    max-width: 800px;
     margin: auto;
 }
 
 .carousel {
     display: flex;
-    transition: transform 0.5s ease; /* Smooth transition */
+    transition: transform 0.5s ease;
 }
 
 .carousel img {
-    width: 500px; /* Set a fixed width */
-    height: 450px; /* Set a fixed height */
-    object-fit: cover; /* Ensures images maintain aspect ratio */
-    flex-shrink: 0; /* Prevents shrinking */
-    margin: 5px; /* Adds spacing between images */
-    border-radius: 10px; /* Optional: Makes images rounded */
+    width: 500px;
+    height: 450px;
+    object-fit: cover;
+    flex-shrink: 0;
+    margin: 5px;
+    border-radius: 10px;
 }
 
 .carousel img.active {
-    transform: scale(1.2); /* Enlarges the active image */
-    z-index: 2; /* Brings the active image to the front */
+    transform: scale(1.2);
+    z-index: 2;
 }
 
 .carousel img:not(.active) {
-    opacity: 0.7; /* Fades out the non-active images */
+    opacity: 0.7;
 }
 
 .carousel img:hover {
@@ -104,7 +115,7 @@
 }
 
 .carousel-arrow {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.5);
     border: none;
     color: white;
     padding: 10px;
@@ -112,7 +123,7 @@
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    z-index: 3; /* Ensure arrows are above images */
+    z-index: 3;
 }
 
 .left-arrow {
@@ -124,21 +135,17 @@
 }
 
 .carousel-arrow:hover {
-    background-color: rgba(0, 0, 0, 0.8); /* Darken on hover */
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
-/*
-CSS for Leaderboard page
-*/
+/* Leaderboard Styles */
 .leaderboard-background {
-    background-image: url('../assets/img/gallery/scroll_background.jpg'); /* Replace with the correct image path */
-    background-size: cover; /* Ensures the image covers the entire section */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    min-height: 100vh; /* Ensures the background covers the full viewport height */
+    background-image: url('../assets/body_background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
     display: flex;
-    /*align-items: center; /* Vertically centers the content */
-    /*justify-content: center; /* Horizontally centers the content */
 }
 
 .leaderboard-container {
@@ -149,12 +156,12 @@ CSS for Leaderboard page
 }
 
 .leaderboard-table {
-    background-color: rgba(255, 255, 255, 0.8); /* Adds a semi-transparent white background */
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 80%; /* Adjusts the table width */
+    width: 80%;
     margin: auto;
 }
 
@@ -176,10 +183,6 @@ CSS for Leaderboard page
 
 .leaderboard-table tr:hover {
     background-color: #ddd;
-}
-
-.leaderboard-table td {
-    text-align: center;
 }
 
 .league-input {
