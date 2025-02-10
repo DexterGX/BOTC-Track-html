@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", async function () {
     const userName = localStorage.getItem("userName");
     if (!userName) {
@@ -14,7 +15,14 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById("games-played").innerText = user.get("gamesPlayed") || 0;
         document.getElementById("win-rate").innerText = user.get("winRate") ? user.get("winRate") + "%" : "0%";
     }
+
+    await loadUserMatches(); // Load match history
+    assignRowClasses(); // Assign classes to rows after loading matches
 });
+
+let currentPage = 1;
+const matchesPerPage = 10;
+let matchesData = [];
 
 async function loadUserMatches() {
     const currentUser = Parse.User.current();
@@ -23,58 +31,123 @@ async function loadUserMatches() {
         return;
     }
 
-    const userId = currentUser.id; // Get the user's Back4App ID
-
+    const userId = currentUser.id;
     const Match = Parse.Object.extend("Matches");
     const query = new Parse.Query(Match);
-    query.equalTo("submitted_by", userId); // Fetch matches where the user submitted them
-    query.descending("date");
+    query.equalTo("submitted_by", userId);
+    query.descending("date"); // Sort by date first
+    query.descending("createdAt"); // Sort by submission time within the same date
 
     try {
-        const results = await query.find();
-        const matchHistoryTable = document.querySelector("#match-history tbody");
-        matchHistoryTable.innerHTML = "";
+        matchesData = await query.find();
 
-        if (results.length === 0) {
-            matchHistoryTable.innerHTML = "<tr><td colspan='8' class='text-center'>No matches found.</td></tr>";
-            return;
-        }
-
-        results.forEach(match => {
-            const row = `<tr>
-                <td>${match.get("date") ? match.get("date").toISOString().split("T")[0] : "N/A"}</td>
-                <td>${match.get("league_code") || "N/A"}</td>
-                <td>${match.get("storyteller") || "N/A"}</td>
-                <td>${match.get("script_played") || "N/A"}</td>
-                <td>${match.get("players") ? match.get("players").join(", ") : "N/A"}</td>
-                <td>${match.get("team") || "N/A"}</td>
-                <td>${match.get("role") || "N/A"}</td>
-                <td>${match.get("game_outcome") || "N/A"}</td>
-                <td>${match.get("st_mistake") || "N/A"}</td>
-            </tr>`;
-            matchHistoryTable.innerHTML += row;
+        // Ensure sorting is applied properly
+        matchesData.sort((a, b) => {
+            const dateA = new Date(a.get("date"));
+            const dateB = new Date(b.get("date"));
+            
+            if (dateA.getTime() !== dateB.getTime()) {
+                return dateB - dateA; // Sort by date (latest first)
+            }
+            return b.createdAt - a.createdAt; // Sort by submission time (latest first)
         });
+
+        updateMatchTable();
     } catch (error) {
         console.error("Error loading match history:", error);
     }
 }
 
-document.addEventListener("DOMContentLoaded", loadUserMatches);
+function updateMatchTable() {
+    const matchHistoryTable = document.querySelector("#match-history tbody");
+    matchHistoryTable.innerHTML = "";
 
-function toggleCustomScript() {
-    var scriptSelect = document.getElementById("script-played");
-    var customScriptGroup = document.getElementById("custom-script-group");
-    if (scriptSelect.value === "Custom Script") {
-        customScriptGroup.style.display = "block";
-    } else {
-        customScriptGroup.style.display = "none";
+    const startIndex = (currentPage - 1) * matchesPerPage;
+    const endIndex = startIndex + matchesPerPage;
+    const paginatedMatches = matchesData.slice(startIndex, endIndex);
+
+    if (paginatedMatches.length === 0) {
+        matchHistoryTable.innerHTML = "<tr><td colspan='9' class='text-center'>No matches found.</td></tr>";
+        return;
+    }
+
+    paginatedMatches.forEach(match => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${match.get("date") ? match.get("date").toISOString().split("T")[0] : "N/A"}</td>
+            <td>${match.get("league_code") || "N/A"}</td>
+            <td>${match.get("storyteller") || "N/A"}</td>
+            <td>${match.get("script_played") || "N/A"}</td>
+            <td>${match.get("players") ? match.get("players").join(", ") : "N/A"}</td>
+            <td>${match.get("team") || "N/A"}</td>
+            <td>${match.get("role") || "N/A"}</td>
+            <td>${match.get("game_outcome") || "N/A"}</td>
+            <td>${match.get("st_mistake") || "N/A"}</td>
+        `;
+        matchHistoryTable.appendChild(row);
+    });
+
+    assignRowClasses();
+
+    document.getElementById("page-info").textContent = `Page ${currentPage}`;
+    document.getElementById("prev-page").disabled = currentPage === 1;
+    document.getElementById("next-page").disabled = endIndex >= matchesData.length;
+}
+
+function assignRowClasses() {
+    document.querySelectorAll("#match-history tbody tr").forEach(row => {
+        const team = row.querySelector("td:nth-child(6)").textContent.trim();
+        const game_outcome = row.querySelector("td:nth-child(8)").textContent.trim();
+        const st_mistake = row.querySelector("td:nth-child(9)").textContent.trim();
+
+        if (team === "Good" && game_outcome === "Good Wins") {
+            row.classList.add("win");
+        } else if (team === "Good" && game_outcome !== "Good Wins") {
+            row.classList.add("loss");
+        } else if (team === "Evil" && game_outcome === "Evil Wins") {
+            row.classList.add("win");
+        } else if (team === "Evil" && game_outcome !== "Evil Wins") {
+            row.classList.add("loss");
+        } else if (team === "Storyteller" && st_mistake === "No") {
+            row.classList.add("win");
+        } else if (team === "Storyteller" && st_mistake === "Yes") {
+            row.classList.add("mistake");
+        }
+    });
+}
+
+function nextPage() {
+    if ((currentPage * matchesPerPage) < matchesData.length) {
+        currentPage++;
+        updateMatchTable();
     }
 }
 
-// Ensure the function is loaded
-document.addEventListener("DOMContentLoaded", function () {
-    var scriptSelect = document.getElementById("script-played");
-    if (scriptSelect) {
-        scriptSelect.addEventListener("change", toggleCustomScript);
+function prevPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        updateMatchTable();
     }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("prev-page").addEventListener("click", prevPage);
+    document.getElementById("next-page").addEventListener("click", nextPage);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("#match-history tbody tr").forEach(row => {
+        // Create Expand Button
+        const expandBtn = document.createElement("button");
+        expandBtn.textContent = "+";
+        expandBtn.classList.add("expand-btn");
+
+        // Append button to row
+        row.appendChild(expandBtn);
+
+        expandBtn.addEventListener("click", function () {
+            row.classList.toggle("expanded");
+            expandBtn.textContent = row.classList.contains("expanded") ? "-" : "+";
+        });
+    });
 });
