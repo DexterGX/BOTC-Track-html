@@ -209,3 +209,173 @@ body {
 .league-input button:hover {
     background-color: #45a049;
 }
+
+/* Match History Table Styling */
+#match-history {
+    background-color: #cfd1d3;
+    border-radius: 8px;
+    padding: 10px;
+    border-spacing: 0 10px; /* Adds spacing between rows */
+    border-collapse: separate; /* Ensures spacing applies */
+}
+
+#match-history tbody tr {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensures rounded corners for contents */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#match-history tbody tr:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#match-history tbody tr.win {
+    background-color: #d4edda; /* Light green for wins */
+}
+
+#match-history tbody tr.loss {
+    background-color: #f8d7da; /* Light red for losses */
+}
+
+#match-history tbody tr.mistake {
+    background-color: #FFD580; /* Light orange for mistakes as storyteller */
+}
+
+#match-history tbody tr td {
+    border: none; /* Removes cell borders */
+    padding: 15px; /* Adds spacing inside cells */
+    vertical-align: middle;
+}
+
+/* Header Styles */
+#match-history thead th {
+    background-color: #343a40;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* General Table Spacing */
+.table-responsive {
+    padding: 10px;
+}
+
+/* Limit the table height to fit 10 matches */
+#match-history-container {
+    max-height: 500px; /* Adjust based on row size */
+    overflow-y: auto; /* Allows scrolling if needed */
+}
+
+/* Style for pagination buttons */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.pagination-controls button {
+    margin: 5px;
+    padding: 5px 15px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.pagination-controls button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Adjust table styles for dropdown rows */
+#match-history tbody tr {
+    transition: all 0.3s ease;
+}
+
+#match-history tbody tr.dropdown-row {
+    display: none; /* Hide dropdown rows by default */
+    background-color: #f9f9f9; /* Subtle background for dropdown */
+}
+
+#match-history tbody tr.show + .dropdown-row {
+    display: table-row; /* Show dropdown row when expanded */
+}
+
+.expand-btn {
+    cursor: pointer;
+    font-size: 16px;
+    background: none;
+    border: none;
+    color: #007bff;
+}
+
+.expand-btn:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Table - Show only main details on small screens */
+@media (max-width: 768px) {
+    #match-history thead {
+        display: none; /* Hide table header */
+    }
+
+    #match-history tbody tr {
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+        padding: 10px;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    #match-history tbody tr td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #match-history tbody tr td:last-child {
+        border-bottom: none;
+    }
+
+    /* Show only important details */
+    #match-history tbody tr td:nth-child(1), /* Date */
+    #match-history tbody tr td:nth-child(2), /* League Code */
+    #match-history tbody tr td:nth-child(6), /* Team */
+    #match-history tbody tr .expand-btn {
+        display: flex;
+    }
+
+    /* Hide extra details */
+    #match-history tbody tr td:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(6)):not(.expand-btn) {
+        display: none;
+    }
+
+    /* Expand button */
+    .expand-btn {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* Show extra details when expanded */
+    .expanded td {
+        display: flex !important;
+    }
+}
