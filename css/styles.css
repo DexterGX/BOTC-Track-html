@@ -6,6 +6,16 @@ body {
     background-size: cover;
 }
 
+/* Footer */
+.footer {
+    background-image: url("https://as1.ftcdn.net/jpg/04/92/50/50/1000_F_492505079_bwFRH5gNugrx1tKXEcWYiPK2zyRZ6Rnu.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
 /* Override Bootstrap's .bg-light class */
 .bg-light {
     background-color: #cfd1d3 !important;
@@ -47,7 +57,7 @@ body {
 }
 
 .masthead-subheading {
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 500;
 }
 
@@ -65,17 +75,6 @@ body {
 
 .text-muted {
     color: #f8f9fa !important;
-}
-
-/* Footer */
-.footer {
-    background-image: url("https://as1.ftcdn.net/jpg/04/92/50/50/1000_F_492505079_bwFRH5gNugrx1tKXEcWYiPK2zyRZ6Rnu.jpg");
-    background-color: #777;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 10px;
-    text-align: center;
-    color: white;
 }
 
 /* Carousel */
