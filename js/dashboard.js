@@ -151,3 +151,96 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    loadUserMatches();
+});
+
+async function loadUserMatches() {
+    const currentUser = Parse.User.current();
+    if (!currentUser) {
+        console.error("No logged-in user found.");
+        return;
+    }
+
+    const userId = currentUser.id;
+    const Match = Parse.Object.extend("Matches");
+    const query = new Parse.Query(Match);
+    query.equalTo("submitted_by", userId);
+    query.descending("date");
+    query.descending("createdAt");
+
+    try {
+        const results = await query.find();
+        renderMatches(results);
+    } catch (error) {
+        console.error("Error loading match history:", error);
+    }
+}
+
+function renderMatches(matches) {
+    const matchHistoryTable = document.querySelector("#match-history tbody");
+    const matchHistoryMobile = document.querySelector("#match-history-mobile");
+
+    matchHistoryTable.innerHTML = "";
+    matchHistoryMobile.innerHTML = "";
+
+    matches.forEach(match => {
+        // Standard table row
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${match.get("date") ? match.get("date").toISOString().split("T")[0] : "N/A"}</td>
+            <td>${match.get("league_code") || "N/A"}</td>
+            <td>${match.get("team") || "N/A"}</td>
+            <td><button class="expand-btn">+</button></td>
+        `;
+        matchHistoryTable.appendChild(row);
+
+        // Expandable row for additional details
+        const detailsRow = document.createElement("tr");
+        detailsRow.classList.add("match-details");
+        detailsRow.innerHTML = `<td colspan="4">
+            <strong>Storyteller:</strong> ${match.get("storyteller") || "N/A"}<br>
+            <strong>Script Played:</strong> ${match.get("script_played") || "N/A"}<br>
+            <strong>Players:</strong> ${match.get("players") ? match.get("players").join(", ") : "N/A"}<br>
+            <strong>Role:</strong> ${match.get("role") || "N/A"}<br>
+            <strong>Game Outcome:</strong> ${match.get("game_outcome") || "N/A"}<br>
+            <strong>ST Mistake:</strong> ${match.get("st_mistake") || "N/A"}
+        </td>`;
+        matchHistoryTable.appendChild(detailsRow);
+
+        // Expand functionality
+        row.querySelector(".expand-btn").addEventListener("click", function () {
+            detailsRow.classList.toggle("expanded");
+            this.textContent = detailsRow.classList.contains("expanded") ? "-" : "+";
+        });
+
+        // Mobile-friendly match card
+        const matchCard = document.createElement("div");
+        matchCard.classList.add("match-card");
+        matchCard.innerHTML = `
+            <div class="match-header">
+                <div>
+                    <strong>${match.get("date") ? match.get("date").toISOString().split("T")[0] : "N/A"}</strong>
+                    - ${match.get("league_code") || "N/A"}
+                </div>
+                <button class="expand-btn">+</button>
+            </div>
+            <div class="match-details">
+                <strong>Storyteller:</strong> ${match.get("storyteller") || "N/A"}<br>
+                <strong>Script Played:</strong> ${match.get("script_played") || "N/A"}<br>
+                <strong>Players:</strong> ${match.get("players") ? match.get("players").join(", ") : "N/A"}<br>
+                <strong>Role:</strong> ${match.get("role") || "N/A"}<br>
+                <strong>Game Outcome:</strong> ${match.get("game_outcome") || "N/A"}<br>
+                <strong>ST Mistake:</strong> ${match.get("st_mistake") || "N/A"}
+            </div>
+        `;
+        matchHistoryMobile.appendChild(matchCard);
+
+        // Expand functionality for mobile
+        matchCard.querySelector(".expand-btn").addEventListener("click", function () {
+            matchCard.classList.toggle("expanded");
+            this.textContent = matchCard.classList.contains("expanded") ? "-" : "+";
+        });
+    });
+}
