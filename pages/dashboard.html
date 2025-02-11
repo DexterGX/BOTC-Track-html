@@ -46,7 +46,8 @@
     <div class="container mt-4">
         <h2>Match History</h2>
         <button class="btn btn-primary mb-3" onclick="window.location.href='submit-match.html'">Add New Match</button>
-        <div class="table-responsive">
+        <!-- Standard Table for Desktop -->
+        <div class="table-responsive" id="match-history-container">
             <table class="table table-bordered table-hover" id="match-history">
                 <thead class="thead-dark">
                     <tr>
@@ -65,10 +66,13 @@
             </table>
         </div>
 
+        <!-- Mobile Match History -->
+        <div id="match-history-mobile"></div>
+        
         <!-- Pagination controls -->
         <div class="pagination-controls">
             <button id="prev-page" onclick="prevPage()">Previous</button>
-            <span id="page-info">Page 1</span>
+            <span id="page-info">Page 1 of X</span>
             <button id="next-page" onclick="nextPage()">Next</button>
         </div>
     </div>

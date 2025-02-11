@@ -77,6 +77,12 @@ body {
     color: #f8f9fa !important;
 }
 
+#page-info {
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
 /* Carousel */
 .carousel-container {
     position: relative;
@@ -265,8 +271,7 @@ body {
 
 /* Limit the table height to fit 10 matches */
 #match-history-container {
-    max-height: 500px; /* Adjust based on row size */
-    overflow-y: auto; /* Allows scrolling if needed */
+    width: 100%;
 }
 
 /* Style for pagination buttons */
@@ -315,67 +320,74 @@ body {
     color: #007bff;
 }
 
-.expand-btn:hover {
-    text-decoration: underline;
+/* Mobile-friendly compact match list (hidden by default) */
+#match-history-mobile {
+    display: none;
 }
 
-/* Responsive Table - Show only main details on small screens */
+/* Responsive behavior for mobile view */
 @media (max-width: 768px) {
-    #match-history thead {
-        display: none; /* Hide table header */
+    #match-history {
+        display: none; /* Hide standard table */
     }
 
-    #match-history tbody tr {
-        display: flex;
-        flex-direction: column;
-        border-radius: 8px;
-        padding: 10px;
+    #match-history-mobile {
+        display: block; /* Show mobile version */
+    }
+
+    /* Mobile match cards with color-coded backgrounds */
+    .match-card {
         background-color: white;
+        border-radius: 8px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 15px;
         margin-bottom: 10px;
-        position: relative;
+        transition: 0.2s;
+        border-left: 5px solid transparent; /* Visual indicator */
     }
 
-    #match-history tbody tr td {
+    /* Apply colors to match outcomes */
+    .match-card.win {
+        background-color: #d4edda; /* Light green for wins */
+        border-left-color: #28a745; /* Darker green border */
+    }
+
+    .match-card.loss {
+        background-color: #f8d7da; /* Light red for losses */
+        border-left-color: #dc3545; /* Darker red border */
+    }
+
+    .match-card.mistake {
+        background-color: #FFD580; /* Light orange for storyteller mistakes */
+        border-left-color: #fd7e14; /* Darker orange border */
+    }
+
+    .match-card .match-header {
         display: flex;
         justify-content: space-between;
-        padding: 8px;
-        border-bottom: 1px solid #ddd;
+        align-items: center;
+        font-weight: bold;
     }
 
-    #match-history tbody tr td:last-child {
-        border-bottom: none;
-    }
-
-    /* Show only important details */
-    #match-history tbody tr td:nth-child(1), /* Date */
-    #match-history tbody tr td:nth-child(2), /* League Code */
-    #match-history tbody tr td:nth-child(6), /* Team */
-    #match-history tbody tr .expand-btn {
-        display: flex;
-    }
-
-    /* Hide extra details */
-    #match-history tbody tr td:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(6)):not(.expand-btn) {
-        display: none;
-    }
-
-    /* Expand button */
-    .expand-btn {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: #007bff;
-        color: white;
+    .match-card .expand-btn {
+        background: none;
         border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
+        font-size: 18px;
+        color: #007bff;
         cursor: pointer;
     }
 
-    /* Show extra details when expanded */
-    .expanded td {
-        display: flex !important;
+    .match-card .expand-btn:hover {
+        text-decoration: underline;
+    }
+
+    .match-card .match-details {
+        display: none;
+        padding-top: 5px;
+        border-top: 1px solid #ddd;
+    }
+
+    .match-card.expanded .match-details {
+        display: block;
     }
 }
