@@ -1,22 +1,50 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    const userName = localStorage.getItem("userName");
-    if (!userName) {
+    const user = await Parse.User.current();
+    if (!user) {
         window.location.href = "login.html";
         return;
     }
 
-    document.getElementById("username").innerText = userName;
-
-    // Fetch user profile data
-    const user = await Parse.User.current();
-    if (user) {
-        document.getElementById("favorite-character").innerText = user.get("favoriteCharacter") || "Not set";
-        document.getElementById("games-played").innerText = user.get("gamesPlayed") || 0;
-        document.getElementById("win-rate").innerText = user.get("winRate") ? user.get("winRate") + "%" : "0%";
-    }
+    // Fetch and update the username and favorite character
+    const userName = user.get("username") || "Not set";
+    document.getElementById("username").innerText = `${userName}`;
+    document.getElementById("favorite-character").innerText = user.get("favoriteCharacter") || "Not set";
+    
+    const profilePicture = user.get("profilePicture") || "../assets/default-profile.jpg";
+    document.getElementById("profile-picture").src = profilePicture;
 
     await loadUserMatches(); // Load match history
 });
+
+
+async function uploadProfilePicture() {
+    const user = await Parse.User.current();
+    if (!user) {
+        console.error("User not found");
+        return;
+    }
+
+    const fileInput = document.getElementById("upload-profile-picture");
+    if (fileInput.files.length === 0) {
+        alert("Please select an image to upload.");
+        return;
+    }
+
+    const file = fileInput.files[0];
+    const parseFile = new Parse.File(file.name, file);
+    
+    try {
+        await parseFile.save();
+        user.set("profilePicture", parseFile.url());
+        await user.save();
+
+        document.getElementById("profile-picture").src = parseFile.url();
+        alert("Profile picture updated successfully!");
+    } catch (error) {
+        console.error("Error uploading profile picture:", error);
+        alert("Failed to upload profile picture.");
+    }
+}
 
 let currentPage = 1;
 const matchesPerPage = 10;
@@ -53,6 +81,8 @@ async function loadUserMatches() {
         currentPage = 1; // Always reset to first page when loading new data
         updateMatchTable();
         updateMatchCards();
+        updateProfileStats(); // Update additional profile stats
+
     } catch (error) {
         console.error("Error loading match history:", error);
     }
@@ -234,5 +264,34 @@ function updateMatchCards() {
             this.textContent = matchCard.classList.contains("expanded") ? "-" : "+";
         });
     });
+}
+
+function updateProfileStats() {
+    let gamesPlayed = matchesData.length;
+    let storytellerGames = 0;
+    let storytellerMistakes = 0;
+    let wins = 0;
+
+    matchesData.forEach(match => {
+        const team = match.get("team");
+        const gameOutcome = match.get("game_outcome");
+        const stMistake = match.get("st_mistake");
+
+        if (team === "Storyteller") {
+            storytellerGames++;
+            gamesPlayed--;
+            if (stMistake === "Yes") {
+                storytellerMistakes++;
+            }
+        }
+        if ((team === "Good" && gameOutcome === "Good Wins") || (team === "Evil" && gameOutcome === "Evil Wins")) {
+            wins++;
+        }
+    });
+
+    document.getElementById("games-played").innerText = gamesPlayed;
+    document.getElementById("win-rate").innerText = gamesPlayed > 0 ? ((wins / gamesPlayed) * 100).toFixed(2) + "%" : "0%";
+    document.getElementById("st-games").innerText = storytellerGames;
+    document.getElementById("st-mistake-rate").innerText = storytellerGames > 0 ? ((storytellerMistakes / storytellerGames) * 100).toFixed(2) + "%" : "0%";
 }
 

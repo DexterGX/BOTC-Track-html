@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/styles.css">
     <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
     <script src="../js/auth.js" defer></script>
-    <script src="../js/dashboard.js" defer></script>
+    <script src="../js/edit_profile.js" defer></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -27,58 +27,28 @@
         </div>
     </nav>
 
-    <div class="container mt-4">
-        <h2 id="dashboard-message"></h2> 
-        <button class="btn btn-danger" id="logout">Logout</button>
-    </div>
-
     <div class="container mt-5 text-center">
+        <h2>Edit Profile</h2>
         <div class="profile-section">
+            <input type="file" id="upload-profile-picture" accept="image/*" style="display: none;">
             <img src="../assets/default-profile.jpg" id="profile-picture" class="rounded-circle" width="150" height="150">
-            <h2 id="username">Loading...</h2>
-            <p><strong>Favorite Character:</strong> <span id="favorite-character">Not set</span></p>
-            <p><strong>Games Played:</strong> <span id="games-played">0</span></p>
-            <p><strong>Win Rate:</strong> <span id="win-rate">0%</span></p>
-            <p><strong>Storyteller Games:</strong> <span id="st-games"></span></p>
-            <p><strong>Storyteller Mistakes Rate:</strong> <span id="st-mistake-rate">0%</span></p>
-            <a href="edit_profile.html" button class="btn btn-primary" id="edit-profile">Edit Profile</a>
+            <p>
+                <strong>Name:</strong> 
+                <span id="user-name" class="editable-field">Not set</span>
+                <img src="../assets/edit-icon.png" class="edit-icon" onclick="showInput('user-name')">
+                <input type="text" id="user-name-input" class="edit-input form-control" placeholder="Enter your name">
+            </p>
+            <p>
+                <strong>Favorite Character:</strong> 
+                <span id="favorite-character" class="editable-field">Not set</span>
+                <img src="../assets/edit-icon.png" class="edit-icon" onclick="showInput('favorite-character')">
+                <input type="text" id="favorite-character-input" class="edit-input form-control" placeholder="Enter favorite character">
+            </p>
+            <button class="btn btn-primary mt-3" id="save-profile">Save Changes</button>
         </div>
+        <button class="btn btn-secondary mt-3" onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
     </div>
 
-    <div class="container mt-4">
-        <h2>Match History</h2>
-        <button class="btn btn-primary mb-3" onclick="window.location.href='submit-match.html'">Add New Match</button>
-        <!-- Standard Table for Desktop -->
-        <div class="table-responsive" id="match-history-container">
-            <table class="table table-bordered table-hover" id="match-history">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Date</th>
-                        <th>League Code</th>
-                        <th>Storyteller</th>
-                        <th>Script Played</th>
-                        <th>Players</th>
-                        <th>Team</th>
-                        <th>Role</th>
-                        <th>Game Outcome</th>
-                        <th>ST Mistake</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-
-        <!-- Mobile Match History -->
-        <div id="match-history-mobile"></div>
-        
-        <!-- Pagination controls -->
-        <div class="pagination-controls">
-            <button id="prev-page" onclick="prevPage()">Previous</button>
-            <span id="page-info">Page 1 of X</span>
-            <button id="next-page" onclick="nextPage()">Next</button>
-        </div>
-    </div>
-    
     <footer class="footer">
         <p>© 2025 BOTC Track. All rights reserved.</p>
     </footer>
