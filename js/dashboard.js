@@ -62,9 +62,9 @@ function updateMatchTable() {
     const matchHistoryTable = document.querySelector("#match-history tbody");
     matchHistoryTable.innerHTML = "";
 
-    const totalPages = Math.ceil(matchesData.length / matchesPerPage);
+    const totalPages = Math.max(1, Math.ceil(matchesData.length / matchesPerPage)); // Ensure at least 1 page
 
-    // Ensure the page number does not exceed the total available pages
+    // Prevent invalid page numbers
     if (currentPage > totalPages) {
         currentPage = totalPages;
     }
@@ -98,13 +98,36 @@ function updateMatchTable() {
 
     assignRowClasses();
 
-    // Update the page info display
-    document.getElementById("page-info").textContent = `Page ${currentPage} of ${totalPages > 0 ? totalPages : 1}`;
+    // ✅ Always update the total pages correctly
+    document.getElementById("page-info").textContent = `Page ${currentPage} of ${totalPages}`;
 
-    // Enable or disable buttons based on page
+    // ✅ Enable or disable buttons properly
     document.getElementById("prev-page").disabled = (currentPage === 1);
     document.getElementById("next-page").disabled = (currentPage >= totalPages);
 }
+
+function nextPage() {
+    const totalPages = Math.max(1, Math.ceil(matchesData.length / matchesPerPage));
+    if (currentPage < totalPages) {
+        currentPage += 1; // ✅ Move forward by exactly 1 page
+        updateMatchTable();
+    }
+}
+
+function prevPage() {
+    if (currentPage > 1) {
+        currentPage -= 1; // ✅ Move backward by exactly 1 page
+        updateMatchTable();
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("prev-page").removeEventListener("click", prevPage);
+    document.getElementById("next-page").removeEventListener("click", nextPage);
+
+    loadUserMatches(); // Ensure matches load on startup
+});
 
 function assignRowClasses() {
     document.querySelectorAll("#match-history tbody tr").forEach(row => {
@@ -127,29 +150,6 @@ function assignRowClasses() {
         }
     });
 }
-
-function nextPage() {
-    const totalPages = Math.ceil(matchesData.length / matchesPerPage);
-    if (currentPage < totalPages) {
-        currentPage++;
-        updateMatchTable();
-        //document.getElementById("page-info").textContent = `Page ${currentPage} of ${totalPages}`;
-    }
-}
-
-function prevPage() {
-    if (currentPage > 1) {
-        currentPage--;
-        updateMatchTable();
-        //document.getElementById("page-info").textContent = `Page ${currentPage} of ${totalPages}`;
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("prev-page").addEventListener("click", prevPage);
-    document.getElementById("next-page").addEventListener("click", nextPage);
-    loadUserMatches(); // Ensure the first page is properly loaded
-});
 
 function updateMatchCards() {
     const matchHistoryMobile = document.querySelector("#match-history-mobile");
