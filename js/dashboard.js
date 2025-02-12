@@ -80,12 +80,18 @@ function updateMatchTable() {
         matchHistoryTable.innerHTML = "<tr><td colspan='9' class='text-center'>No matches found.</td></tr>";
     } else {
         paginatedMatches.forEach(match => {
+            // Check if script is custom
+            let scriptPlayed = match.get("script_played") || "N/A";
+            if (scriptPlayed.toLowerCase() === "custom script") {
+                const customScriptName = match.get("custom_script") || "Unknown";
+                scriptPlayed = `Custom Script - ${customScriptName}`;
+            }
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${match.get("date") ? match.get("date").toISOString().split("T")[0] : "N/A"}</td>
                 <td>${match.get("league_code") || "N/A"}</td>
                 <td>${match.get("storyteller") || "N/A"}</td>
-                <td>${match.get("script_played") || "N/A"}</td>
+                <td>${scriptPlayed}</td>
                 <td>${match.get("players") ? match.get("players").join(", ") : "N/A"}</td>
                 <td>${match.get("team") || "N/A"}</td>
                 <td>${match.get("role") || "N/A"}</td>
@@ -98,7 +104,7 @@ function updateMatchTable() {
 
     assignRowClasses();
     updateMatchCards(); // ✅ Update the mobile version at the same time
-    
+
     // ✅ Always update the total pages correctly
     document.getElementById("page-info").textContent = `Page ${currentPage} of ${totalPages}`;
 
@@ -176,6 +182,11 @@ function updateMatchCards() {
     }
 
     paginatedMatches.forEach(match => {
+        let scriptPlayed = match.get("script_played") || "N/A";
+        if (scriptPlayed.toLowerCase() === "custom script") {
+            const customScriptName = match.get("custom_script") || "Unknown";
+            scriptPlayed = `Custom Script - ${customScriptName}`;
+        }
         const matchCard = document.createElement("div");
         matchCard.classList.add("match-card");
 
@@ -206,7 +217,7 @@ function updateMatchCards() {
             <div class="match-details">
                 <strong>League Code:</strong> ${match.get("league_code") || "N/A"}<br>
                 <strong>Storyteller:</strong> ${match.get("storyteller") || "N/A"}<br>
-                <strong>Script Played:</strong> ${match.get("script_played") || "N/A"}<br>
+                <strong>Script Played: </strong><span>${scriptPlayed}</span><br>
                 <strong>Players:</strong> ${match.get("players") ? match.get("players").join(", ") : "N/A"}<br>
                 <strong>Team: </strong>${match.get("team") || "N/A"}<br>
                 <strong>Role:</strong> ${match.get("role") || "N/A"}<br>
