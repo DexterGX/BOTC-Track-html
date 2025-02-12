@@ -97,7 +97,8 @@ function updateMatchTable() {
     }
 
     assignRowClasses();
-
+    updateMatchCards(); // ✅ Update the mobile version at the same time
+    
     // ✅ Always update the total pages correctly
     document.getElementById("page-info").textContent = `Page ${currentPage} of ${totalPages}`;
 
@@ -155,7 +156,26 @@ function updateMatchCards() {
     const matchHistoryMobile = document.querySelector("#match-history-mobile");
     matchHistoryMobile.innerHTML = "";
 
-    matchesData.forEach(match => {
+    const totalPages = Math.max(1, Math.ceil(matchesData.length / matchesPerPage)); // Ensure at least 1 page
+
+    // Prevent invalid page numbers
+    if (currentPage > totalPages) {
+        currentPage = totalPages;
+    }
+    if (currentPage < 1) {
+        currentPage = 1;
+    }
+
+    const startIndex = (currentPage - 1) * matchesPerPage;
+    const endIndex = Math.min(startIndex + matchesPerPage, matchesData.length);
+    const paginatedMatches = matchesData.slice(startIndex, endIndex);
+
+    if (paginatedMatches.length === 0) {
+        matchHistoryMobile.innerHTML = "<p class='text-center'>No matches found.</p>";
+        return;
+    }
+
+    paginatedMatches.forEach(match => {
         const matchCard = document.createElement("div");
         matchCard.classList.add("match-card");
 
@@ -177,9 +197,9 @@ function updateMatchCards() {
         matchCard.innerHTML = `
             <div class="match-header">
                 <div>
-                    <strong>${match.get("date") ? match.get("date").toISOString().split("T")[0] : "N/A"}</strong> - 
-                    ${match.get("league_code") || "N/A"}
-                    <strong>Team: </strong>${match.get("team") || "N/A"}
+                    <span>${match.get("date") ? match.get("date").toISOString().split("T")[0] : "N/A"}</span> - 
+                    <span>${match.get("league_code") || "N/A"}</span>
+                    <span>Team: ${match.get("team") || "N/A"}</span>
                 </div>
                 <button class="expand-btn">+</button>
             </div>
