@@ -37,7 +37,9 @@
             </div>
             <div class="form-group">
                 <label for="league-code">League Code:</label>
-                <input type="text" class="form-control" id="league-code" required>
+                <select class="form-control" id="league-code">
+                    <option value="">Select a League Code</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="storyteller">Storyteller:</label>
@@ -57,8 +59,13 @@
                 <input type="text" class="form-control" id="custom-script">
             </div>
             <div class="form-group">
-                <label for="players">Players (comma separated):</label>
-                <input type="text" class="form-control" id="players" required>
+                <label for="players">Players:</label>
+                <select multiple class="form-control" id="players">
+                    <option value="">Select Players</option>
+                </select>
+                <input type="text" class="form-control mt-2" id="custom-player" placeholder="Add a new player">
+
+                <button type="button" class="btn btn-secondary mt-2" onclick="addCustomPlayer()">Add Player</button>
             </div>
             <div class="form-group">
                 <label for="team">Your Team:</label>

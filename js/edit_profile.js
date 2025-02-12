@@ -1,7 +1,9 @@
 async function showInput(fieldId) {
     document.getElementById(fieldId).style.display = 'none';
-    document.getElementById(fieldId + '-input').style.display = 'inline-block';
-    document.getElementById(fieldId + '-input').focus();
+    const inputField = document.getElementById(fieldId + '-input');
+    inputField.style.display = 'inline-block';
+    inputField.value = document.getElementById(fieldId).innerText !== "Not set" ? document.getElementById(fieldId).innerText : "";
+    inputField.focus();
 }
 
 document.addEventListener("DOMContentLoaded", async function() {
@@ -10,6 +12,12 @@ document.addEventListener("DOMContentLoaded", async function() {
         document.getElementById("user-name").innerText = user.get("username") || "Not set";
         document.getElementById("favorite-character").innerText = user.get("favoriteCharacter") || "Not set";
         document.getElementById("profile-picture").src = user.get("profilePicture") || "../assets/default-profile.jpg";
+        document.getElementById("league-code").innerText = user.get("league_code") ? user.get("league_code").join(", ") : "Not set";
+        document.getElementById("players").innerText = user.get("players") ? user.get("players").join(", ") : "Not set";
+    
+        // Populate dropdowns in match submission form
+        populateDropdown("league-code-dropdown", user.get("league_code") || []);
+        populateDropdown("players-dropdown", user.get("players") || []);
     }
 
     document.getElementById("profile-picture").addEventListener("click", function () {
@@ -38,12 +46,26 @@ document.addEventListener("DOMContentLoaded", async function() {
     });
 });
 
+function populateDropdown(dropdownId, values) {
+    const dropdown = document.getElementById(dropdownId);
+    dropdown.innerHTML = "";
+    values.forEach(value => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value;
+        dropdown.appendChild(option);
+    });
+}
+
 document.getElementById("save-profile").addEventListener("click", async function() {
     const user = await Parse.User.current();
     if (!user) {
         alert("No user found.");
         return;
     }
+
+    // Fetch existing data to avoid overwriting other fields
+    await user.fetch();
 
     const userName = document.getElementById("user-name-input").value;
     if (userName) {
@@ -55,6 +77,16 @@ document.getElementById("save-profile").addEventListener("click", async function
         user.set("favoriteCharacter", favoriteCharacter);
     }
 
+    const leagueCodes = document.getElementById("league-code-input").value.split(",").map(code => code.trim()).filter(code => code);
+    if (leagueCodes.length > 0) {
+        user.set("league_code", leagueCodes);
+    }
+
+    const players = document.getElementById("players-input").value.split(",").map(player => player.trim()).filter(player => player);
+    if (players.length > 0) {
+        user.set("players", players);
+    }
+    
     try {
         await user.save();
         alert("Profile updated successfully!");

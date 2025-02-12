@@ -13,7 +13,7 @@ async function submitMatch() {
     const date = document.getElementById("date").value;
     const leagueCode = document.getElementById("league-code").value;
     const storyteller = document.getElementById("storyteller").value;
-    const players = document.getElementById("players").value.split(",").map(p => p.trim());
+    const players = Array.from(document.getElementById("players").selectedOptions).map(option => option.value);
     const team = document.getElementById("team").value;
     const roleInput = document.getElementById("role");
     const role = team === "Storyteller" ? "" : roleInput.value; // Only require role if not Storyteller
