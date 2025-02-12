@@ -15,9 +15,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         document.getElementById("league-code").innerText = user.get("league_code") ? user.get("league_code").join(", ") : "Not set";
         document.getElementById("players").innerText = user.get("players") ? user.get("players").join(", ") : "Not set";
     
-        // Populate dropdowns in match submission form
-        populateDropdown("league-code-dropdown", user.get("league_code") || []);
-        populateDropdown("players-dropdown", user.get("players") || []);
+
     }
 
     document.getElementById("profile-picture").addEventListener("click", function () {
@@ -32,6 +30,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         
         const file = fileInput.files[0];
         const parseFile = new Parse.File(file.name, file);
+        const user = await Parse.User.current();
         
         try {
             await parseFile.save();
