@@ -44,6 +44,18 @@
                 <img src="../assets/edit-icon.png" class="edit-icon" onclick="showInput('favorite-character')">
                 <input type="text" id="favorite-character-input" class="edit-input form-control" placeholder="Enter favorite character">
             </p>
+            <p>
+                <strong>League Codes:</strong> 
+                <span id="league-code" class="editable-field">Not set</span>
+                <img src="../assets/edit-icon.png" class="edit-icon" onclick="showInput('league-code')">
+                <input type="text" id="league-code-input" class="edit-input form-control" placeholder="Enter league codes separated by commas">
+            </p>
+            <p>
+                <strong>Friends:</strong> 
+                <span id="players" class="editable-field">Not set</span>
+                <img src="../assets/edit-icon.png" class="edit-icon" onclick="showInput('players')">
+                <input type="text" id="players-input" class="edit-input form-control" placeholder="Enter friends' names separated by commas">
+            </p>
             <button class="btn btn-primary mt-3" id="save-profile">Save Changes</button>
         </div>
         <button class="btn btn-secondary mt-3" onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
