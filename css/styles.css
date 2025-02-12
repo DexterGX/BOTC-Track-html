@@ -391,3 +391,28 @@ body {
         display: block;
     }
 }
+
+/* Profile picture */
+#profile-picture {
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+}
+#profile-picture:hover {
+    opacity: 0.7;
+}
+#upload-profile-picture {
+    display: none;
+}
+
+.edit-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.editable-field {
+    display: inline;
+}
+.edit-input {
+    display: none;
+}
