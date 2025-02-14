@@ -295,3 +295,16 @@ function updateProfileStats() {
     document.getElementById("st-mistake-rate").innerText = storytellerGames > 0 ? ((storytellerMistakes / storytellerGames) * 100).toFixed(2) + "%" : "0%";
 }
 
+async function monitorSession() {
+    setInterval(async () => {
+        const currentUser = await Parse.User.currentAsync();
+        if (!currentUser) {
+            alert("Session expired, please log in again.");
+            localStorage.removeItem("userName");
+            localStorage.removeItem("userEmail");
+            window.location.href = "login.html";
+        }
+    }, 10 * 60 * 1000); // Check every 10 minutes
+}
+
+monitorSession();

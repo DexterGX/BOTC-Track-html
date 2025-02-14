@@ -16,8 +16,10 @@ if (window.location.pathname.includes("login.html")) {
         try {
             const user = await Parse.User.logIn(email, password);
             localStorage.setItem("userName", user.get("username"));
-            localStorage.setItem("userEmail", email);
+            localStorage.setItem("userEmail", user.get("email")); // Ensure fresh data
+            await user.fetch(); // Fetch latest user data
             window.location.href = "dashboard.html";
+
         } catch (error) {
             alert("Login failed: " + error.message);
         }
@@ -62,11 +64,16 @@ if (window.location.pathname.includes("signup.html")) {
 
 // Redirect if user is not logged in (Dashboard logic)
 if (window.location.pathname.includes("dashboard.html")) {
-    if (!localStorage.getItem("userName")) {
-        window.location.href = "login.html";
-    } else {
-        document.getElementById("dashboard-message").innerHTML = `Welcome, ${localStorage.getItem("userName")}!`;
+    async function checkSession() {
+        const currentUser = await Parse.User.currentAsync(); // Asynchronously fetch user session
+        if (!currentUser) {
+            window.location.href = "login.html"; // Redirect if session is invalid
+        } else {
+            document.getElementById("dashboard-message").innerHTML = `Welcome, ${currentUser.get("username")}!`;
+        }
     }
+    checkSession();
+    
 
     const logoutButton = document.getElementById("logout");
     if (logoutButton) {
