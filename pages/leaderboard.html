@@ -9,53 +9,54 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="../index.html">BOTC Track</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="https://wiki.bloodontheclocktower.com/Main_Page" aria-label="About BOTC">BOTC Wiki</a></li>
-            <li class="nav-item"><a class="nav-link" href="../pages/leaderboard.html" aria-label="Leaderboard">Leaderboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="../pages/storytellers.html" aria-label="Storytellers">Storytellers</a></li>
-            <li class="nav-item"><a class="nav-link" href="../pages/feedback.html" aria-label="Feedback">Feedback</a></li>
-            <li class="nav-item"><a class="nav-link" href="../pages/login.html" aria-label="Login">Login</a></li>
-        </ul>
-    </div>
-</nav>
-
-<div class="leaderboard-background">
-    <div class="leaderboard-container">
-        <br>
-        <h2>Leaderboard</h2>
-        <div class="league-input">
-            <label for="leagueCode">Enter League Code:</label>
-            <input type="text" id="leagueCode" placeholder="League Code">
-            <br><br>
-            <button id="fetchLeaderboard">View Leaderboard</button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="../index.html">BOTC Track</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="https://wiki.bloodontheclocktower.com/Main_Page" aria-label="About BOTC">BOTC Wiki</a></li>
+                <li class="nav-item"><a class="nav-link" href="../pages/leaderboard.html" aria-label="Leaderboard">Leaderboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="../pages/storytellers.html" aria-label="Storytellers">Storytellers</a></li>
+                <li class="nav-item"><a class="nav-link" href="../pages/feedback.html" aria-label="Feedback">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link" href="../pages/login.html" aria-label="Login">Login</a></li>
+            </ul>
         </div>
-        <table class="leaderboard-table">
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Player Name</th>
-                    <th>Games Played</th>
-                    <th>Wins</th>
-                    <th>Win Rate (%)</th>
-                    <th>Points</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Rows will be dynamically populated here -->
-            </tbody>
-        </table>
-    </div>
-</div>
+    </nav>
 
-<footer class="footer">
-    <p>© 2025 BOTC Track. All rights reserved.</p>
-</footer>
+    <div class="leaderboard-background">
+        <div class="leaderboard-container">
+            <br>
+            <h2>Leaderboard</h2>
+            <div class="league-input">
+                <label for="leagueCode">Enter League Code:</label>
+                <input type="text" id="leagueCode" placeholder="League Code">
+                <br><br>
+                <button id="fetchLeaderboard">View Leaderboard</button>
+            </div>
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Player Name</th>
+                        <th>Games Played</th>
+                        <th>Wins</th>
+                        <th>Win Rate (%)</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically populated here -->
+                </tbody>
+            </table>
+            <strong class="text-muted mb-0">(In development...)</strong>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 BOTC Track. All rights reserved.</p>
+    </footer>
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
